@@ -1,0 +1,34 @@
+.example-container {
+    width: 100%;
+    height: 100%;
+    border: 1px solid rgba(0, 0, 0, 0.5);
+  }
+  
+  .example-sidenav-content {
+    display: flex;
+    height: auto;
+    align-items: left;
+    justify-content: left;
+  }
+  
+  .example-sidenav {
+    padding: 20px;
+  }
+  
+  /* The navigation menu links */
+  .example-sidenav a {
+    padding: 6px 8px 6px 16px;
+    text-decoration: none;
+    font-size: 25px;
+    color: #818181;
+    display: block;
+  }
+
+  .example-sidenav a:hover {
+    color: #f1f1f1;
+  }
+  
+  #wrapbox {
+    display: flex;
+    justify-content: flex-start;
+  }

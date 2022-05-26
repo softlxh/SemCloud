@@ -1,0 +1,129 @@
+.center {
+    margin: auto;
+    width: 50%;
+    padding: 10px;
+    text-align: center;
+  }
+
+.container_border {
+    background-color: rgb(107, 197, 107);
+    margin: 10px;
+    padding: 10px;
+    width:100%;
+    max-height:150px;
+    position: relative;
+}
+
+.container_border button {
+    position: absolute;
+        top: 0px;
+        left: 0px;
+}
+
+.heroes-menu {
+  padding: 0;
+  margin: auto;
+  max-width: 1000px;
+
+  /* flexbox */
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  align-content: flex-start;
+  align-items: flex-start;
+}
+
+a {
+  background-color: #3f525c;
+  border-radius: 2px;
+  padding: 1rem;
+  font-size: 1.2rem;
+  text-decoration: none;
+  display: inline-block;
+  color: #fff;
+  text-align: center;
+  width: 100%;
+  min-width: 70px;
+  margin: .5rem auto;
+  box-sizing: border-box;
+
+  /* flexbox */
+  order: 0;
+  flex: 0 1 auto;
+  align-self: auto;
+}
+
+@media (min-width: 600px) {
+  a {
+    width: 18%;
+    box-sizing: content-box;
+  }
+}
+
+a:hover {
+  background-color: #000;
+}
+
+.rightside_panel {
+  height: auto; /* Full-height: remove this if you want "auto" height */
+  width: 40%; /* Set the width of the sidebar */
+  position: flex; /* Fixed Sidebar (stay in place on scroll) */
+  z-index: 1; /* Stay on top */
+  top: 0; /* Stay at the top */
+  right: 0;
+  background-color: rgb(253, 253, 253); /* Black */
+  overflow-x: hidden; /* Disable horizontal scroll */
+  padding-top: 20px;
+  padding-bottom: 20px;
+  background-color: rgb(158, 220, 231);
+  margin: 10px;
+  margin-top: 1%;
+  float:right;
+}
+
+.rightside_panel a {
+  padding: 6px 8px 6px 16px;
+  text-decoration: none;
+  font-size: 25px;
+  color: #050505;
+  display: block;
+}
+
+.center {
+  margin: auto;
+  width: 50%;
+  padding-bottom: 20px;
+  text-align: center;
+}
+
+#table {
+  font-family: Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  width: 90%;
+  padding: 10px;
+  margin: auto;
+}
+
+#table td, #table th {
+  border: 2px solid rgb(160, 172, 204);
+  padding: 10px;
+  font-weight: lighter;
+  text-align: center;
+  font-size: 20px;
+  color:rgb(20, 37, 190);
+}
+
+#table tr:hover {background-color: #ddd;}
+
+#table th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  background-color: #4444be;
+  color: rgb(225, 226, 231);
+}
+
+#wrapbox {
+  display: flex;
+  justify-content: flex-start;
+}

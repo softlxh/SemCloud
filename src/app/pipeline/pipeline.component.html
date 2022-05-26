@@ -1,0 +1,55 @@
+<div id="wrapbox">
+<div class = "container_border">
+    <h2 class= "center" (click)="onSelectPipelineTitle(pipeline.name)">{{pipeline.name}}</h2>
+    <button (click)="onClick()">Add new task</button> 
+    
+    <br>
+    <div class="heroes-menu" >
+        <a *ngFor="let task of tasks; let i = index" (click)="onShowProperty(task)">
+            {{task.taskname}}
+        </a>
+    </div>
+    
+</div>
+
+<div class="rightside_panel" *ngIf="showPropertyPanel">
+  <div id="wrapbox">
+  
+    <h2 class="center">Property Panel of <strong>{{mockTask.taskname}}</strong> in <strong>{{pipeline.name}}</strong></h2>
+    <button *ngIf="!valueToEdit" (click)="onClosePropertyPanel()">Close</button> 
+    <button *ngIf="valueToEdit" (click)="onConfirmEditedValue()">OK</button>
+  </div>
+  <table id="table">
+     <tr>
+        <th>Property</th>
+        <th *ngIf="!valueToEdit">Value</th>
+        <th *ngIf="valueToEdit">New Value</th>
+    </tr>
+    <tr *ngFor="let task of mockTask.property">
+      <td>{{task.name}}</td>
+      <td *ngIf="!valueToEdit" (click)="onSelectValue(task.value)">{{task.value}}</td>
+      <td *ngIf="valueToEdit">
+        <div id="wrapbox">
+        <input id="name" [(ngModel)]="task.value" placeholder="value" >
+        </div>
+      </td>
+    </tr>
+  </table>
+</div>
+</div>
+
+<div *ngIf="taskName" class= "center">
+  <input id="taskname" [(ngModel)]="taskName" placeholder="name" >
+  <button (click)="onConfirmTaskName()">Confirm Task Name</button>
+</div>
+<div *ngIf="textToEdit" class= "center">
+    <label>New name: </label>
+    <input id="name" [(ngModel)]="pipeline.name" placeholder="name" >
+    <button (click)="onConfirmPipelineTitle()">Confirm</button>
+</div>
+
+
+
+
+
+
