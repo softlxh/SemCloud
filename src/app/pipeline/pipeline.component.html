@@ -39,7 +39,15 @@
 </div>
 
 <div *ngIf="taskName" class= "center">
-  <input id="taskname" [(ngModel)]="taskName" placeholder="name" >
+  <!-- <input id="taskname" [(ngModel)]="taskName" placeholder="name" > -->
+  <mat-form-field appearance="fill" color="accent">
+    <mat-label>Task Name</mat-label>
+    <mat-select [(ngModel)]="taskName" >
+      <mat-option *ngFor="let name of taskNames" [value]="name.value">
+        {{name.viewValue}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
   <button (click)="onConfirmTaskName()">Confirm Task Name</button>
 </div>
 <div *ngIf="textToEdit" class= "center">
