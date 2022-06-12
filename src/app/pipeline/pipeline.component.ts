@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Pipeline, TaskInterface } from '../pipeline_property';
+import { DataService } from "../../data.service";
+import { Subscription } from 'rxjs';
 
 interface TaskName {
   value: string;
@@ -33,16 +35,25 @@ export class PipelineComponent implements OnInit {
     property: []
 };
 
-  constructor() { }
+  message!: string;
+  subscription!: Subscription;
+
+  constructor(private data: DataService) { }
 
   ngOnInit(): void {
+    this.subscription = this.data.currentMessage.subscribe(message => this.message = message)
+  }
+
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
   }
 
   onClick(): void {
     if (this.tasks.length < 4) {
       this.taskName = "Task";
       let currenttime = new Date();
-      console.log(currenttime.toISOString() + ": Add task.");
+      //console.log(currenttime.toISOString() + ": Add task.");
+      this.data.changeMessage(this.message + currenttime.toISOString() + ",Add task." + "\n");
     }
     else {
       alert("Cannot add more tasks!");
@@ -52,25 +63,29 @@ export class PipelineComponent implements OnInit {
   onSelectPipelineTitle(text: string): void {
     this.textToEdit = text;
     let currenttime = new Date();
-    console.log(currenttime.toISOString() + ": title of " + this.textToEdit + " start to be edited.");
+    //console.log(currenttime.toISOString() + ": title of " + this.textToEdit + " start to be edited.");
+    this.data.changeMessage(this.message + currenttime.toISOString() + ",Title of " + this.textToEdit + " start to be edited." + "\n");
   }
 
   onSelectValue(text: string): void {
     this.valueToEdit = text;
     let currenttime = new Date();
-    console.log(currenttime.toISOString() + ": properties of " + this.mockTask.taskname + " start to be edited.");
+    //console.log(currenttime.toISOString() + ": properties of " + this.mockTask.taskname + " start to be edited.");
+    this.data.changeMessage(this.message + currenttime.toISOString() + ",Properties of " + this.mockTask.taskname + " start to be edited." + "\n");
   }
 
   onConfirmPipelineTitle(): void {
     let currenttime = new Date();
-    console.log(currenttime.toISOString() + ": title of " + this.textToEdit + " edit completed.");
+    //console.log(currenttime.toISOString() + ": title of " + this.textToEdit + " edit completed.");
+    this.data.changeMessage(this.message + currenttime.toISOString() + ",Title of " + this.textToEdit + " edit completed." + "\n");
     this.textToEdit = "";
   }
 
   onConfirmEditedValue(): void {
     this.valueToEdit = "";
     let currenttime = new Date();
-    console.log(currenttime.toISOString() + ": properties of " + this.mockTask.taskname + " edit completed.");
+    //console.log(currenttime.toISOString() + ": properties of " + this.mockTask.taskname + " edit completed.");
+    this.data.changeMessage(this.message + currenttime.toISOString() + ",Properties of " + this.mockTask.taskname + " edit completed." + "\n");
   }
 
   onConfirmTaskName(): void {
@@ -157,7 +172,8 @@ export class PipelineComponent implements OnInit {
         }
       }
       let currenttime = new Date();
-      console.log(currenttime.toISOString() + ": task " + this.taskName + " added.");
+      //console.log(currenttime.toISOString() + ": task " + this.taskName + " added.");
+      this.data.changeMessage(this.message + currenttime.toISOString() + ",Task " + this.taskName + " added." + "\n");
     }
     
     this.taskName = "";
@@ -167,13 +183,15 @@ export class PipelineComponent implements OnInit {
     this.mockTask = task;
     this.showPropertyPanel = true;
     let currenttime = new Date();
-    console.log(currenttime.toISOString() + ": task " + this.mockTask.taskname + " property panel opened.");
+    //console.log(currenttime.toISOString() + ": task " + this.mockTask.taskname + " property panel opened.");
+    this.data.changeMessage(this.message + currenttime.toISOString() + ",Task " + this.mockTask.taskname + " property panel opened." + "\n");
   }
 
   onClosePropertyPanel(): void {
     this.showPropertyPanel = false;
     let currenttime = new Date();
-    console.log(currenttime.toISOString() + ": task " + this.mockTask.taskname + " property panel closed.");
+    //console.log(currenttime.toISOString() + ": task " + this.mockTask.taskname + " property panel closed.");
+    this.data.changeMessage(this.message + currenttime.toISOString() + ",Task " + this.mockTask.taskname + " property panel closed." + "\n");
   }
 
 }

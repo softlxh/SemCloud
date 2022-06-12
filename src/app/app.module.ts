@@ -8,12 +8,14 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatSidenavModule} from '@angular/material/sidenav';
 import { PipelineComponent } from './pipeline/pipeline.component';
 
-import {MatSelectModule} from '@angular/material/select'
+import { MatSelectModule } from '@angular/material/select'
+import { DataService } from '../data.service'
 
 @NgModule({
   declarations: [
     AppComponent,
     PipelineComponent
+    
   ],
   imports: [
     BrowserModule,
@@ -22,7 +24,7 @@ import {MatSelectModule} from '@angular/material/select'
     FormsModule,
     MatSelectModule
   ],
-  providers: [],
+  providers: [DataService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

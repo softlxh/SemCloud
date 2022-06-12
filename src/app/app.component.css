@@ -31,4 +31,5 @@
   #wrapbox {
     display: flex;
     justify-content: flex-start;
+    padding-left: 1rem;
   }

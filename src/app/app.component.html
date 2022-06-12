@@ -1,20 +1,24 @@
 <mat-drawer-container class="example-container" fullscreen>
-  <mat-drawer #drawer class="example-sidenav" mode="side">
+  <mat-drawer #drawer class="example-sidenav" mode="side" opened>
     <a href="#" onClick="history.go(0);">New</a>
     <a href="#">Load</a>
     <a href="#">Save</a>
     <a href="#">About</a>
+    <a href="#" (click)="download('file.csv');">Download</a>
   </mat-drawer>
 
-  <div id="wrapbox">
+  <!--
+  
   <div class="example-sidenav-content">
     <button type="button" mat-button (click)="drawer.toggle()">
       Menu
     </button>
   </div>
-  <h1>SemCloud: Semantics Enhanced Cloud System</h1>
+  -->
+  <div id="wrapbox">
+     <h1>SemCloud: Semantics Enhanced Cloud System</h1>
   </div>
-  <hr>
+
 
   <div *ngFor="let x of pipelines">
     <app-pipeline></app-pipeline>
