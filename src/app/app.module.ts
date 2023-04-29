@@ -4,17 +4,20 @@ import { FormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatDialogModule } from '@angular/material/dialog';
 
 import { MatSidenavModule} from '@angular/material/sidenav';
 import { PipelineComponent } from './pipeline/pipeline.component';
 
 import { MatSelectModule } from '@angular/material/select'
-import { DataService } from '../data.service'
+import { DataService } from '../data.service';
+import { AddPipelineDialogComponent } from './add-pipeline-dialog/add-pipeline-dialog.component'
 
 @NgModule({
   declarations: [
     AppComponent,
-    PipelineComponent
+    PipelineComponent,
+    AddPipelineDialogComponent
     
   ],
   imports: [
@@ -22,7 +25,8 @@ import { DataService } from '../data.service'
     BrowserAnimationsModule,
     MatSidenavModule,
     FormsModule,
-    MatSelectModule
+    MatSelectModule,
+    MatDialogModule
   ],
   providers: [DataService],
   bootstrap: [AppComponent]

@@ -27,7 +27,7 @@
     </tr>
     <tr *ngFor="let task of mockTask.property">
       <td>{{task.name}}</td>
-      <td *ngIf="!valueToEdit" (click)="onSelectValue(task.value)">{{task.value}}</td>
+      <td *ngIf="!valueToEdit" (click)="onSelectValue(task.name)">{{task.value}}</td>
       <td *ngIf="valueToEdit">
         <div id="wrapbox">
         <input id="name" [(ngModel)]="task.value" placeholder="value" >
@@ -49,11 +49,12 @@
     </mat-select>
   </mat-form-field>
   <button (click)="onConfirmTaskName()">Confirm Task Name</button>
+  <button (click)="onCancelAddTask()">Cancel</button>
 </div>
 <div *ngIf="textToEdit" class= "center">
     <label>New name: </label>
     <input id="name" [(ngModel)]="pipeline.name" placeholder="name" >
-    <button (click)="onConfirmPipelineTitle()">Confirm</button>
+    <button (click)="onConfirmPipelineTitle(pipeline.name)">Confirm</button>
 </div>
 
 

@@ -2,6 +2,8 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Pipeline } from './pipeline_list';
 import { DataService } from "../data.service";
 import { Subscription } from 'rxjs';
+import { MatDialog } from '@angular/material/dialog';
+import { AddPipelineDialogComponent } from './add-pipeline-dialog/add-pipeline-dialog.component';
 
 @Component({
   selector: 'app-root',
@@ -19,7 +21,7 @@ export class AppComponent implements OnInit, OnDestroy{
   message!: string;
   subscription!: Subscription;
 
-  constructor(private data: DataService) { }
+  constructor(public dialog: MatDialog, private data: DataService) { }
 
   ngOnInit() {
     this.subscription = this.data.currentMessage.subscribe(message => this.message = message)
@@ -48,5 +50,30 @@ export class AppComponent implements OnInit, OnDestroy{
     element.click();
 
     document.body.removeChild(element);
+  }
+
+  openDialog(): void {
+    let currenttime = new Date();
+    this.data.changeMessage(this.message + currenttime.toISOString() + ",The user want to create a pipeline" + "\n");
+
+    const dialogRef = this.dialog.open(AddPipelineDialogComponent, {
+      width: '400px',
+      data: { name: 'Pipeline' + (this.pipelines_num+1).toString() },
+      autoFocus: true,
+      disableClose: true
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.pipelines_num = this.pipelines.length + 1;
+        this.pipelines.push({ id: this.pipelines_num, name: result });
+        let currenttime = new Date();
+        this.data.changeMessage(this.message + currenttime.toISOString() + ",A new pipeline with the name " + result + " added " + "\n");
+      }
+      else {
+        let currenttime = new Date();
+        this.data.changeMessage(this.message + currenttime.toISOString() + ",The user canceled the pipeline creation" + "\n");
+      }
+    });
   }
 }

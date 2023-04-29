@@ -1,10 +1,7 @@
 <mat-drawer-container class="example-container" fullscreen>
   <mat-drawer #drawer class="example-sidenav" mode="side" opened>
-    <a href="#" onClick="history.go(0);">New</a>
-    <a href="#">Load</a>
-    <a href="#">Save</a>
-    <a href="#">About</a>
-    <a href="#" (click)="download('file.csv');">Download</a>
+    <a href="#" onClick="history.go(0);">Questionnaire</a>
+    <a href="#" (click)="download('Log.csv');">Download</a>
   </mat-drawer>
 
   <!--
@@ -20,12 +17,13 @@
   </div>
 
 
-  <div *ngFor="let x of pipelines">
-    <app-pipeline></app-pipeline>
+  <div *ngFor="let pipeline of pipelines">
+    <app-pipeline [name]="pipeline.name"></app-pipeline>
   </div>
 
   <div class="example-sidenav-content">
-    <button type="button" mat-button (click)='addPipeline("Pipeline")'>Add New Pipeline</button>
+    <!-- <button type="button" mat-button (click)='addPipeline("Pipeline")'>Add New Pipeline</button> -->
+    <button type="button" mat-button (click)="openDialog()">Add New Pipeline</button>
   </div>
 
 </mat-drawer-container>
